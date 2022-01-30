@@ -24,23 +24,50 @@ class HomeViewController: BaseViewController, UITableViewDataSource, UITableView
            
            
            initNavigation()
-           items.append(Contact(title: "Muhammadjon", body: "+998994534565"))
-           items.append(Contact(title: "Diyor", body: "+998976579845"))
-           items.append(Contact(title: "Ann", body: "+998976579845"))
-           items.append(Contact(title: "Thomas", body: "+998976579845"))
-           items.append(Contact(title: "Madina", body: "+998976579845"))
-           items.append(Contact(title: "Hulk", body: "+998976579845"))
-           items.append(Contact(title: "Savage", body: "+998976579845"))
-           items.append(Contact(title: "Aziz", body: "+998976579845"))
-           items.append(Contact(title: "Bunyod", body: "+998976579845"))
-           items.append(Contact(title: "Sherlock", body: "+998976579845"))
+           apiPostList()
 
        }
+    
+       func refreshTableView(posts: [Contact]){
+            self.items = posts
+            self.tableView.reloadData()
+        }
+    
+       func apiPostList(){
+            showProgress()
+            AFHttp.get(url: AFHttp.API_POST_LIST, params: AFHttp.paramsEmpty(), handler: { response in
+                self.hideProgress()
+                switch response.result {
+                    case .success:
+                        let posts = try! JSONDecoder().decode([Contact].self, from: response.data!)
+                        self.refreshTableView(posts: posts)
+                case let .failure(error):
+                    print(error)
+                }
+            })
+        }
+    
+       func apiPostDelete(post:Contact){
+           showProgress()
+           AFHttp.del(url: AFHttp.API_POST_DELETE + post.id!, params: AFHttp.paramsEmpty(), handler: {response in
+               self.hideProgress()
+               switch response.result {
+               case .success:
+                   print(response.result)
+                   self.apiPostList()
+               case let .failure(error):
+                   print(error)
+               }
+           })
+           
+       }
+    
+    
        func initNavigation(){
            let refresh = UIImage(named: "ic_refresh")
            let add = UIImage(named: "ic_add")
-           navigationItem.leftBarButtonItem = UIBarButtonItem(image: refresh, style: .plain, target: self, action: #selector(rightTapped))
-           navigationItem.rightBarButtonItem = UIBarButtonItem(image: add, style: .plain, target: self, action: #selector(leftTapped))
+           navigationItem.leftBarButtonItem = UIBarButtonItem(image: refresh, style: .plain, target: self, action: #selector(leftTapped))
+           navigationItem.rightBarButtonItem = UIBarButtonItem(image: add, style: .plain, target: self, action: #selector(rightTapped))
            title = "MVC Pattern"
        }
        
@@ -52,14 +79,14 @@ class HomeViewController: BaseViewController, UITableViewDataSource, UITableView
        
        // Open new page with present
        func callEditViewController(){
-           let vc = EditViewController(nibName: "CreateViewController", bundle: nil)
-           let navigationController = UINavigationController(rootViewController: vc)
+           let homeView = EditViewController(nibName: "EditViewController", bundle: nil)
+           let navigationController = UINavigationController(rootViewController: homeView)
            self.present(navigationController, animated: true, completion: nil)
        }
            
        // MARK: - Action
        @objc func leftTapped(){
-           
+           apiPostList()
        }
        @objc func rightTapped(){
            callCreateViewController()
@@ -99,6 +126,7 @@ class HomeViewController: BaseViewController, UITableViewDataSource, UITableView
            return UIContextualAction(style: .normal, title: "Delete") {(action, swipeButton, completion) in
                print ("DELETE HERE")
                completion(true)
+               self.apiPostDelete(post: post)
            }
        }
        

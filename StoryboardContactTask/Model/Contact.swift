@@ -16,4 +16,10 @@ struct Contact: Decodable{
         self.title = title
         self.body = body
     }
+    
+    init(title: String, body: String, id: String){
+            self.title = title
+            self.body = body
+            self.id = id
+        }
 }

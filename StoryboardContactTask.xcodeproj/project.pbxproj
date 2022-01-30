@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,9 @@
 		D45E262F27A2586C0058EEB0 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45E262D27A2586C0058EEB0 /* EditViewController.xib */; };
 		D45E263427A25BE50058EEB0 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45E263227A25BE50058EEB0 /* ContactTableViewCell.swift */; };
 		D45E263527A25BE50058EEB0 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45E263327A25BE50058EEB0 /* ContactTableViewCell.xib */; };
+		D45E265527A4FFA90058EEB0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D45E265427A4FFA90058EEB0 /* Alamofire */; };
+		D45E265927A4FFDE0058EEB0 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D45E265827A4FFDE0058EEB0 /* JGProgressHUD */; };
+		D45E265D27A500DF0058EEB0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45E265C27A500DF0058EEB0 /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,7 @@
 		D45E262D27A2586C0058EEB0 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		D45E263227A25BE50058EEB0 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		D45E263327A25BE50058EEB0 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
+		D45E265C27A500DF0058EEB0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45E265927A4FFDE0058EEB0 /* JGProgressHUD in Frameworks */,
+				D45E265527A4FFA90058EEB0 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +80,8 @@
 		D45E25FE27A257790058EEB0 /* StoryboardContactTask */ = {
 			isa = PBXGroup;
 			children = (
+				D45E263127A25BBA0058EEB0 /* Cell */,
+				D45E265B27A500CF0058EEB0 /* Network */,
 				D45E261627A257B00058EEB0 /* Controllers */,
 				D45E261427A2579C0058EEB0 /* Model */,
 				D45E261327A257900058EEB0 /* Apputilis */,
@@ -105,7 +113,6 @@
 		D45E261627A257B00058EEB0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D45E263127A25BBA0058EEB0 /* Cell */,
 				D45E261F27A258240058EEB0 /* BaseViewController.swift */,
 				D45E262227A258410058EEB0 /* HomeViewController.swift */,
 				D45E262327A258410058EEB0 /* HomeViewController.xib */,
@@ -126,6 +133,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		D45E265B27A500CF0058EEB0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D45E265C27A500DF0058EEB0 /* Network.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,6 +157,10 @@
 			dependencies = (
 			);
 			name = StoryboardContactTask;
+			packageProductDependencies = (
+				D45E265427A4FFA90058EEB0 /* Alamofire */,
+				D45E265827A4FFDE0058EEB0 /* JGProgressHUD */,
+			);
 			productName = StoryboardContactTask;
 			productReference = D45E25FC27A257790058EEB0 /* StoryboardContactTask.app */;
 			productType = "com.apple.product-type.application";
@@ -169,6 +188,10 @@
 				Base,
 			);
 			mainGroup = D45E25F327A257790058EEB0;
+			packageReferences = (
+				D45E265327A4FFA90058EEB0 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D45E265727A4FFDE0058EEB0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+			);
 			productRefGroup = D45E25FD27A257790058EEB0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -205,6 +228,7 @@
 				D45E262927A2585A0058EEB0 /* CreateViewController.swift in Sources */,
 				D45E262027A258240058EEB0 /* BaseViewController.swift in Sources */,
 				D45E263427A25BE50058EEB0 /* ContactTableViewCell.swift in Sources */,
+				D45E265D27A500DF0058EEB0 /* Network.swift in Sources */,
 				D45E260027A257790058EEB0 /* AppDelegate.swift in Sources */,
 				D45E260227A257790058EEB0 /* SceneDelegate.swift in Sources */,
 				D45E262E27A2586C0058EEB0 /* EditViewController.swift in Sources */,
@@ -409,6 +433,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D45E265327A4FFA90058EEB0 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+		D45E265727A4FFDE0058EEB0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D45E265427A4FFA90058EEB0 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D45E265327A4FFA90058EEB0 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		D45E265827A4FFDE0058EEB0 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D45E265727A4FFDE0058EEB0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D45E25F427A257790058EEB0 /* Project object */;
 }

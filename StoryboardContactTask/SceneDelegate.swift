@@ -21,13 +21,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func callHomeController(){
-        let vc = HomeViewController(nibName: "HomeViewController", bundle: nil)
-        if self.window == nil{
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-        }
-        self.window?.rootViewController = vc
-        self.window?.makeKeyAndVisible()
+                let vc = HomeViewController(nibName: "HomeViewController", bundle: nil)
+                let nc = UINavigationController(rootViewController: vc)
+                
+                if self.window == nil{
+                    self.window = UIWindow(frame: UIScreen.main.bounds)
+                }
+                self.window?.rootViewController = nc
+                self.window?.makeKeyAndVisible()
     }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
